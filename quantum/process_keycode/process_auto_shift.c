@@ -66,7 +66,7 @@ __attribute__((weak)) bool get_custom_auto_shifted_key(uint16_t keycode, keyreco
     return false;
 }
 
-/** \brief Called on physical press, returns whether is Auto Shift key */
+/** \brief Called on physical press, returns whether key is an Auto Shift key */
 __attribute__((weak)) bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 #    ifndef NO_AUTO_SHIFT_ALPHA
@@ -170,9 +170,8 @@ static bool autoshift_press(uint16_t keycode, uint16_t now, keyrecord_t *record)
     }
 
     // Store record to be sent to user functions if there's no release record then.
-    autoshift_lastrecord               = *record;
-    autoshift_lastrecord.event.pressed = false;
-    autoshift_lastrecord.event.time    = 0;
+    autoshift_lastrecord            = *record;
+    autoshift_lastrecord.event.time = 0;
     // clang-format off
 #    if defined(AUTO_SHIFT_REPEAT) || defined(AUTO_SHIFT_REPEAT_PER_KEY)
     if (keycode == autoshift_lastkey &&
@@ -496,10 +495,8 @@ void retroshift_poll_time(keyevent_t *event) {
 }
 // Used to swap the times of Retro Shifted key and Auto Shift key that interrupted it.
 void retroshift_swap_times() {
-    if (last_retroshift_time != 0 && autoshift_flags.in_progress) {
-        uint16_t temp        = retroshift_time;
-        retroshift_time      = last_retroshift_time;
-        last_retroshift_time = temp;
+    if (autoshift_flags.in_progress) {
+        autoshift_time = last_retroshift_time;
     }
 }
 #    endif

@@ -25,8 +25,8 @@ class TestLogger : public std::ostream {
     TestLogger& info();
     TestLogger& trace();
     TestLogger& error();
-    void print_log();
-    void reset();
+    void        print_log();
+    void        reset();
 
    private:
     std::stringbuf m_log;

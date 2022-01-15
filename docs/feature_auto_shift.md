@@ -145,7 +145,7 @@ Do not Auto Shift alpha characters, which include A through Z.
 
 ### Auto Shift Per Key
 
-There are functions that allows you to determine which keys shold be autoshifted, much like the tap-hold keys.
+There are functions that allows you to determine which keys should be autoshifted, much like the tap-hold keys.
 
 The first of these, used to simply add a key to Auto Shift, is `get_custom_auto_shifted_key`:
 
@@ -166,15 +166,13 @@ For more granular control, there is `get_auto_shifted_key`. The default function
 bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 #    ifndef NO_AUTO_SHIFT_ALPHA
-        case KC_A ... KC_Z:
+        case AUTO_SHIFT_ALPHA:
 #    endif
 #    ifndef NO_AUTO_SHIFT_NUMERIC
-        case KC_1 ... KC_0:
+        case AUTO_SHIFT_NUMERIC:
 #    endif
 #    ifndef NO_AUTO_SHIFT_SPECIAL
-        case KC_TAB:
-        case KC_MINUS ... KC_SLASH:
-        case KC_NONUS_BACKSLASH:
+        case AUTO_SHIFT_SPECIAL:
 #    endif
             return true;
     }
@@ -271,9 +269,15 @@ generating taps on release. For example:
 #define RETRO_SHIFT 500
 ```
 
+Without a value set, holds of any length without an interrupting key will produce the shifted value.
+
 This value (if set) must be greater than one's `TAPPING_TERM`, as the key press
 must be designated as a 'hold' by `process_tapping` before we send the modifier.
+[Per-key tapping terms](tap_hold.md#tapping-term) can be used as a workaround.
 There is no such limitation in regards to `AUTO_SHIFT_TIMEOUT` for normal keys.
+
+**Note:** Tap Holds must be added to Auto Shift, see [here.](feature_auto_shift.md#auto-shift-per-key)
+`IS_RETRO` may be helpful if one wants all Tap Holds retro shifted.
 
 ### Retro Shift and Tap Hold Configurations
 

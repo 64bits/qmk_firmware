@@ -13,10 +13,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$(TEST)_INC := \
+$(TEST_OUTPUT)_INC := \
 	tests/test_common/common_config.h
 
-$(TEST)_SRC := \
+$(TEST_OUTPUT)_SRC := \
 	$(TMK_COMMON_SRC) \
 	$(QUANTUM_SRC) \
 	$(SRC) \
@@ -29,8 +29,8 @@ $(TEST)_SRC := \
 	tests/test_common/test_logger.cpp \
 	$(patsubst $(ROOTDIR)/%,%,$(wildcard $(TEST_PATH)/*.cpp))
 
-$(TEST)_DEFS := $(TMK_COMMON_DEFS) $(OPT_DEFS)
+$(TEST_OUTPUT)_DEFS := $(TMK_COMMON_DEFS) $(OPT_DEFS)
 
-$(TEST)_CONFIG := $(TEST_PATH)/config.h
+$(TEST_OUTPUT)_CONFIG := $(TEST_PATH)/config.h
 
 VPATH += $(TOP_DIR)/tests/test_common

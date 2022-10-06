@@ -175,10 +175,10 @@ static const keycodedescType PROGMEM keyselection[] = {
         {"Break",   KC_PAUS},
         {"C-A-D",   KC_CAD},  // Ctrl-Alt-Del
         {"AltF4",   KC_AF4},
-        {"QK_BOOT",   QK_BOOT},   // firmware flash mode
+        {"RESET",   QK_BOOT},   // firmware flash mode
 };
 
-#define MAX_KEYSELECTION sizeof(keyselection)/sizeof(keyselection[0])
+#define MAX_KEYSELECTION ARRAY_SIZE(keyselection)
 
 static uint8_t selectedkey_idx = 0;
 static keycodedescType selectedkey_rec;

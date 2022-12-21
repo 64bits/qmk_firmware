@@ -24,3 +24,6 @@
 [submodule "keyboards/handwired/dactyl_manuform/5x6/keymaps/sunaku/getreuer"]
 	path = keyboards/handwired/dactyl_manuform/5x6_5/keymaps/sunaku/getreuer
 	url = https://github.com/getreuer/qmk-keymap
+[submodule "keyboards/ergohaven/remnant/keymaps/sunaku/getreuer"]
+	path = keyboards/ergohaven/remnant/keymaps/sunaku/getreuer
+	url = https://github.com/getreuer/qmk-keymap
